@@ -9,7 +9,9 @@ import ApplicationRouter from '../router';
 const container = new Container({ defaultScope: 'Singleton' });
 // Like other dependencies we do not resolve ApplicationRouter via `TYPES`.
 // We get the instance of the class only in app.ts file during bootstrap.
-container.bind(ApplicationRouter).to(ApplicationRouter);
+// container.bind(ApplicationRouter).to(ApplicationRouter);
+// An improvement to reduce verboseness of code you can also self bind like so when the type you are resolving is a concrete type
+container.bind(ApplicationRouter).toSelf();
 
 container.bind<UserController>(TYPES.UserController).to(UserController);
 container.bind<UserRepository>(TYPES.UserRepository).to(UserRepository);
